@@ -21,7 +21,7 @@ def dist_from_color(img, color):
     '''
 
     # BUG in getNumpy, it returns with colors reversed
-    matrix = (img.getNumpy()[:,:,[2, 1, 0]] - color) ** 2
+    matrix = (img.getNumpy()[:, :, [2, 1, 0]] - color) ** 2
     width, height = img.size()
     return matrix.sum() ** 0.5 / (width * height)
 
