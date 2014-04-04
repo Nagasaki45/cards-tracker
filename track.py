@@ -47,7 +47,7 @@ def main():
         img = cam.getImage()
         dist = ((img - background) + (background - img)).dilate(5)
         # segmented = dist
-        segmented = dist.binarize(70).invert()
+        segmented = dist.binarize(COLOR_BINARIZATION_THRESHOLD).invert()
         # find blobs defaults
         # threshval=-1, minsize=10, maxsize=0, threshblocksize=0,
         # threshconstant=5, appx_level=3
