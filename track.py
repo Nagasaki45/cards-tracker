@@ -7,7 +7,6 @@ http://www.youtube.com/watch?v=jihxqg3kr-g
 
 import time
 import numpy as np
-import matplotlib.pyplot as plt
 import SimpleCV
 
 from settings import *
