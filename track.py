@@ -30,7 +30,7 @@ def main():
 
     print(__doc__)
     display = SimpleCV.Display()
-    cam = SimpleCV.Camera(camera_index=1)
+    cam = SimpleCV.Camera(camera_index=CAMERA_INDEX)
     normaldisplay = True
 
     # wait some time for the camera to turn on

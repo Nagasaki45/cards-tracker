@@ -1,3 +1,5 @@
+CAMERA_INDEX = 1
+
 CARD_DIMENSION = 80
 
 CARDS = [{'name': 'carton',
