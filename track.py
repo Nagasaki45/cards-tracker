@@ -1,11 +1,20 @@
 '''
 Tracking cards from different colors with SimpleCV.
 
+Usage:
+    python track.py [img|segmented]
+
+Options:
+    img            shows the image itself
+    segmented      shows binarized image, usefull for setting
+                   COLOR_BINARIZATION_THRESHOLD in the settings file
+
 Based on the code from:
 http://www.youtube.com/watch?v=jihxqg3kr-g
 '''
 
 import time
+import sys
 import numpy as np
 import SimpleCV
 
@@ -28,28 +37,23 @@ def dist_from_color(img, color):
 def main():
 
     print(__doc__)
-    display = SimpleCV.Display()
     cam = SimpleCV.Camera(camera_index=CAMERA_INDEX)
-    normaldisplay = True
+    display = False
+    if len(sys.argv) > 1:
+        display = sys.argv[1]
 
     # wait some time for the camera to turn on
     time.sleep(1)
     background = cam.getImage()
 
-    while display.isNotDone():
+    print('Everything is ready. Starting to track!')
 
-        if display.mouseRight:
-            normaldisplay = not(normaldisplay)
-            print('Display Mode: {}'.format(
-                'Normal' if normaldisplay else 'Segmented'))
+    while True:
 
         img = cam.getImage()
         dist = ((img - background) + (background - img)).dilate(5)
         # segmented = dist
         segmented = dist.binarize(COLOR_BINARIZATION_THRESHOLD).invert()
-        # find blobs defaults
-        # threshval=-1, minsize=10, maxsize=0, threshblocksize=0,
-        # threshconstant=5, appx_level=3
         blobs = segmented.findBlobs(minsize=CARD_DIMENSION ** 2)
         if blobs:
             points = []
@@ -61,12 +65,14 @@ def main():
                 dists = [dist_from_color(car, c['color']) for c in CARDS]
                 choosen_car = CARDS[np.argmin(dists)]['name']
                 print(b.x, b.y, choosen_car)
-            img.drawPoints(points)
 
-        if normaldisplay:
-            img.show()
+        if display:
+            to_show = locals()[display]
+            if blobs:
+                to_show.drawPoints(points)
+            to_show.show()
         else:
-            segmented.show()
+            time.sleep(0.1)
 
 
 if __name__ == '__main__':
