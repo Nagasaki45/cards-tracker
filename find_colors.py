@@ -1,4 +1,6 @@
 import SimpleCV
 
-cam = SimpleCV.Camera(camera_index=1)
+from settings import *
+
+cam = SimpleCV.Camera(camera_index=CAMERA_INDEX)
 cam.live()
