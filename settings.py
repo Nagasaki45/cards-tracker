@@ -1,7 +1,7 @@
 CAMERA_INDEX = 1
 
 COLOR_BINARIZATION_THRESHOLD = 70  # change this value according to
-								   # segmented mode
+                                   # segmented mode
 
 CARD_DIMENSION = 80
 
