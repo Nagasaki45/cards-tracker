@@ -3,4 +3,4 @@ cards-tracker
 
 Track cards using python and SimpleCv
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/wDAFhOv0tKU" frameborder="0" allowfullscreen></iframe>
+## [Video demonstration](http://youtu.be/wDAFhOv0tKU)
